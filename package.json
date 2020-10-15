@@ -1,0 +1,26 @@
+{
+  "name": "reviewsapi",
+  "version": "1.0.0",
+  "description": "A project completed as a Student at Hack Reactor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Mohawk/reviewsAPI.git"
+  },
+  "keywords": [
+    "cassandra"
+  ],
+  "author": "Brandon Bates",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-Mohawk/reviewsAPI/issues"
+  },
+  "homepage": "https://github.com/Team-Mohawk/reviewsAPI#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
