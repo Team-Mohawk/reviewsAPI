@@ -1,5 +1,5 @@
 const cassandra = require('cassandra-driver');
-const client = new cassandra.Client({contactPoints: ['http://162.203.169.116/']});
+const client = new cassandra.Client({contactPoints: ['localhost']});
 
 const testQuery = (id) => {
   client.execute(`SELECT * FROM testqnas.questions WHERE id = ?`, [id])
