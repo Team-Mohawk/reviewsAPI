@@ -37,7 +37,7 @@ app.put('/reviews/helpful/:rev_id', (req, res) => {
 
 })
 
-app.put('/reviews/report/:rev_id' (req, res) => {
+app.put('/reviews/report/:rev_id', (req, res) => {
 
 })
 
