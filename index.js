@@ -4,7 +4,7 @@ const app = express();
 const http = require('http');
 const port = 2020;
 
-http.createServer(app).listen(port, '0.0.0.0', () => {
+http.createServer(app).listen(port, "0.0.0.0", () => {
   console.log(`the server's running on ${port} i guess`)
 })
 
@@ -14,12 +14,32 @@ const db = require('./db');
 
 //CREATE
 
+app.post('reviews/:id', (req, res) => {
+
+})
+
 //READ
 app.get('/', (req, res) => {
-  res.send('reviewsAPI')
+  res.send('Connected to SDC API')
 })
+
+app.get('/reviews/:id/list', (req, res) => {
+
+})
+
+app.get('/reviews/:id/meta', (req, res) => {
+
+})
+
 //UPDATE
+
+app.put('/reviews/helpful/:rev_id', (req, res) => {
+
+})
+
+app.put('/reviews/report/:rev_id' (req, res) => {
+
+})
 
 //DELTE
 
-//start listening on port
