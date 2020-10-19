@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
   res.send('Connected to Mohawk')
 })
 
-app.get('/reviews/:id/list', (req, res) => {
+app.get('/qa/:id', (req, res) => {
   res.send(db.testQuery(req.params.id));
 })
 
