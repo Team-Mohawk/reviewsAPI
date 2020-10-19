@@ -20,11 +20,11 @@ app.post('reviews/:id', (req, res) => {
 
 //READ
 app.get('/', (req, res) => {
-  res.send('Connected to SDC API')
+  res.send('Connected to Mohawk')
 })
 
 app.get('/reviews/:id/list', (req, res) => {
-
+  res.send(db.testQuery(params.id));
 })
 
 app.get('/reviews/:id/meta', (req, res) => {
