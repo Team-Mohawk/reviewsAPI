@@ -4,7 +4,7 @@ const app = express();
 const http = require('http');
 const port = 2020;
 
-http.createServer(app).listen(port, () => {
+http.createServer(app).listen(port, '0.0.0.0', () => {
   console.log(`the server's running on ${port} i guess`)
 })
 
