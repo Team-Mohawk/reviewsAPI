@@ -5,3 +5,8 @@ const testQuery = (id) => {
   client.execute(`SELECT * FROM questions WHERE id = ?`, [id])
     .then(res => console.log(res))
 }
+
+module.exports = {
+  testQuery,
+
+}
