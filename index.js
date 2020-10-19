@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/reviews/:id/list', (req, res) => {
-  res.send(db.testQuery(params.id));
+  res.send(db.testQuery(req.params.id));
 })
 
 app.get('/reviews/:id/meta', (req, res) => {
