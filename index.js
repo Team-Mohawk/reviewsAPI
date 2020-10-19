@@ -1,7 +1,14 @@
 //declare server and import express
 const express = require('express');
 const app = express();
+const http = require('http');
 const port = 2020;
+
+http.createServer(app).listen(port, () => {
+  console.log(`the server's running on ${port} i guess`)
+})
+
+const db = require('./db');
 
 /**=========routes==========**/
 
@@ -16,6 +23,3 @@ app.get('/', (req, res) => {
 //DELTE
 
 //start listening on port
-app.listen(port, () => {
-  console.log(`the server's running on ${port} i guess`)
-})
