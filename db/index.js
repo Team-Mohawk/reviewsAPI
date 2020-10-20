@@ -3,7 +3,7 @@ const client = new cassandra.Client({contactPoints: ['162.203.169.116'], localDa
 
 const testQuery = (id) => {
   client.execute(`ALLOW FILTERING SELECT * FROM testqnas.questions WHERE id = ?;`, [id])
-    .then(res => console.log(res))
+    .then(res => return res)
 }
 
 module.exports = {
