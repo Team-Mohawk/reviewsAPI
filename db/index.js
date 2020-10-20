@@ -2,8 +2,11 @@ const cassandra = require('cassandra-driver');
 const client = new cassandra.Client({contactPoints: ['162.203.169.116'], localDataCenter: 'datacenter1'});
 
 const testQuery = () => {
-  client.execute(`SELECT * FROM testqnas.answers WHERE question_id = 5 AND id > 0;`)
-    .then(res => { return res; })
+  client.execute(`SELECT * FROM testqnas.answers WHERE question_id = 5 AND id > 0`)
+    .then(res => {
+      console.log(res);
+      return res;
+    })
 }
 
 module.exports = {
