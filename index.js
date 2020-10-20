@@ -20,7 +20,7 @@ app.post('reviews/:id', (req, res) => {
 
 //READ
 app.get('/', (req, res) => {
-  res.send('Connected to Mohawk')
+  res.send(db.testQuery())
 })
 
 app.get('/qa/:id', (req, res) => {
