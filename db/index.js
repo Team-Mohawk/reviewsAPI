@@ -12,7 +12,7 @@ const client = new cassandra.Client({ contactPoints: ['162.203.169.116'], localD
 const getReviews = async (id, photos, cb) => {
   // console.log(id);
 
-  client.execute('SELECT * FROM reviews.reviews WHERE product_id=?', [id], { prepare: true })
+  client.execute('SELECT * FROM reviews.reviews WHERE product_id=? ALLOW FILTERING', [id], { prepare: true })
     .then(res => {
       // console.log(res.rows)
       return {
