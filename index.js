@@ -14,31 +14,73 @@ const db = require('./db');
 
 //CREATE
 
-app.post('reviews/:id', (req, res) => {
-
+app.post('reviews/:prod_id', (req, res) => {
+  db.newReview(req.params.prod_id,
+    // rating,
+    // summary,
+    // body,
+    // recommend,
+    // name,
+    // email,
+    // photos,
+    )
 })
 
 //READ
 app.get('/', (req, res) => {
-  res.send(db.testQuery())
+  db.testQuery((err, data) => {
+    if (err) {
+      res.status(500).send();
+    } else {
+      res.send(data);
+    }
+  })
 })
 
-app.get('/qa/:id', (req, res) => {
-  res.send(db.testQuery(req.params.id));
+app.get('/reviews/:id', (req, res) => {
+  db.getPhotosForReview(req.params.id)
+    .then(photos => {
+      db.getReviews(req.params.id, photos, (err, data) => {
+        if (err) {
+          res.status(500).send()
+        } else {
+          res.send(data)
+        }
+      })
+    })
 })
 
 app.get('/reviews/:id/meta', (req, res) => {
-
+  db.getReviewMeta(req.params.id, (err, data) => {
+    if (err) {
+      res.status(500).send();
+    } else {
+      res.send(data);
+    }
+  })
 })
 
 //UPDATE
 
 app.put('/reviews/helpful/:rev_id', (req, res) => {
-
+  db.addReviewHelpful(req.params.rev_id, (err, data) => {
+    if (err) {
+      console.log(err)
+      res.status(500).send();
+    } else {
+      res.status(204).send()
+    }
+  })
 })
 
 app.put('/reviews/report/:rev_id', (req, res) => {
-
+  db.reportReview(req.params.rev_id, (err, data) => {
+    if (err) {
+      res.status(500).send();
+    } else {
+      res.status(204).send();
+    }
+  })
 })
 
 //DELTE
