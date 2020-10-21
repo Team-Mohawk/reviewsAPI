@@ -4,6 +4,8 @@ const app = express();
 const http = require('http');
 const port = 2020;
 
+app.use(express.static('./'));
+
 http.createServer(app).listen(port, "0.0.0.0", () => {
   console.log(`the server's running on ${port} i guess`)
 })
@@ -27,15 +29,9 @@ app.post('reviews/:prod_id', (req, res) => {
 })
 
 //READ
-// app.get('/', (req, res) => {
-//   db.testQuery((err, data) => {
-//     if (err) {
-//       res.status(500).send();
-//     } else {
-//       res.send(data);
-//     }
-//   })
-// })
+app.get('/loaderio-dca79065e177ddcb46435a95ab8e9b26', (req, res) => {
+
+})
 
 app.get('/reviews/:id', (req, res) => {
   db.getPhotosForReview(req.params.id)
