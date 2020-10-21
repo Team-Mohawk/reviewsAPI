@@ -27,15 +27,15 @@ app.post('reviews/:prod_id', (req, res) => {
 })
 
 //READ
-app.get('/', (req, res) => {
-  db.testQuery((err, data) => {
-    if (err) {
-      res.status(500).send();
-    } else {
-      res.send(data);
-    }
-  })
-})
+// app.get('/', (req, res) => {
+//   db.testQuery((err, data) => {
+//     if (err) {
+//       res.status(500).send();
+//     } else {
+//       res.send(data);
+//     }
+//   })
+// })
 
 app.get('/reviews/:id', (req, res) => {
   db.getPhotosForReview(req.params.id)
