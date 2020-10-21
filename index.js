@@ -4,7 +4,7 @@ const app = express();
 const http = require('http');
 const port = 2020;
 
-app.use(express.static('./'));
+app.use(express.static(__dirname));
 
 http.createServer(app).listen(port, "0.0.0.0", () => {
   console.log(`the server's running on ${port} i guess`)
@@ -30,7 +30,7 @@ app.post('reviews/:prod_id', (req, res) => {
 
 //READ
 app.get('/loaderio-dca79065e177ddcb46435a95ab8e9b26', (req, res) => {
-
+  res.send()
 })
 
 app.get('/reviews/:id', (req, res) => {
