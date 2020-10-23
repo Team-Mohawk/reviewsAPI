@@ -62,17 +62,72 @@ const newReview = (prod_id, rate, sum, body, rec, nam, ema, pho = [], cha) => {
 }
 
 const getReviewMeta = (id, cb) => {
-  client.execute('SELECT * FROM reviews.reviews WHERE product_id=? AND id > 0', [id], { prepare: true })
+  var ratings = {};
+  var recommend = { 0: 0 }
+  client.execute('SELECT * FROM reviews.reviews WHERE product_id=? ALLOW FILTERING', [id], { prepare: true })
     .then(res => {
-      return res.rows.map(row => {
-        return {
-          "product_id": row.product_id,
-          "ratings": {},
-          "recommended": {},
-          "characteristics": {}
+      res.rows.forEach(row => {
+        if (!ratings[row.rating]) {
+          ratings[row.rating] = 1;
+        } else {
+          ratings[row.rating]++;
+        }
+        if (row.recommend) {
+          recommend[0]++;
         }
       })
-    });
+      return {
+        "product_id": id,
+        "ratings": ratings,
+        "recommend": recommend,
+        "characteristics": {}
+      }
+    })
+    .then(res => {
+      var response = res; // previous query response
+      var built = client.execute('SELECT * FROM reviews.characteristics WHERE product_id=?', [id], { prepare: true })
+        .then(res => {
+          var temp = {};
+          res.rows.forEach(row => {
+            temp[row["name"]] = {
+              "id": row.id,
+              "value": "null"
+            }
+          })
+          return temp;
+        })
+        .then(res => {
+          response.characteristics = res;
+          // console.log(response);
+          return response;
+        })
+        .catch(err => console.log(err));
+      return built;
+    })
+    .then(res => {
+      var response = res;
+      Object.values(response.characteristics).forEach(char => {
+        return client.execute('SELECT * FROM reviews.meta_data WHERE characteristic_id=?', [char.id], { prepare: true })
+          .then(res => {
+            var avg = 0, count = 0;
+            res.rows.forEach(row => {
+              avg += row.value;
+              count ++;
+            })
+            avg = avg/count;
+            char.value = avg.toString();
+            return char
+          })
+          .then(res => {
+            return response;
+          })
+          .then(res => cb(null, res))
+          .catch(err => console.log(err))
+      })
+
+    })
+
+    .catch(err => cb(err));
   // {
   //   "product_id": "2",
   //   "ratings": {
