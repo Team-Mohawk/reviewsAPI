@@ -98,7 +98,6 @@ const getReviewMeta = (id, cb) => {
         })
         .then(res => {
           response.characteristics = res;
-          // console.log(response);
           return response;
         })
         .catch(err => console.log(err));
@@ -112,9 +111,9 @@ const getReviewMeta = (id, cb) => {
             var avg = 0, count = 0;
             res.rows.forEach(row => {
               avg += row.value;
-              count ++;
+              count++;
             })
-            avg = avg/count;
+            avg = avg / count;
             char.value = avg.toString();
             return char
           })
@@ -126,35 +125,7 @@ const getReviewMeta = (id, cb) => {
       })
 
     })
-
     .catch(err => cb(err));
-  // {
-  //   "product_id": "2",
-  //   "ratings": {
-  //     2: 1,
-  //     3: 1,
-  //     4: 2,
-  //     // ...
-  //   },
-  //   "recommended": {
-  //     0: 5
-  //     // ...
-  //   },
-  //   "characteristics": {
-  //     "Size": {
-  //       "id": 14,
-  //       "value": "4.0000"
-  //     },
-  //     "Width": {
-  //       "id": 15,
-  //       "value": "3.5000"
-  //     },
-  //     "Comfort": {
-  //       "id": 16,
-  //       "value": "4.0000"
-  //     },
-  //     // ...
-  // }
 }
 
 const addReviewHelpful = (id, cb) => {

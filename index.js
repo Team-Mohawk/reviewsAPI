@@ -33,7 +33,7 @@ app.get('/loaderio-dca79065e177ddcb46435a95ab8e9b26', (req, res) => {
   res.send()
 })
 
-app.get('/reviews/:id', (req, res) => {
+app.get('/reviews/:id/list', (req, res) => {
   db.getPhotosForReview(req.params.id)
     .then(photos => {
       db.getReviews(req.params.id, photos, (err, data) => {
@@ -46,8 +46,8 @@ app.get('/reviews/:id', (req, res) => {
     })
 })
 
-app.get('/reviews/:id/meta', (req, res) => {
-  db.getReviewMeta(req.params.id, (err, data) => {
+app.get('/reviews/:rev_id/meta', (req, res) => {
+  db.getReviewMeta(req.params.rev_id, (err, data) => {
     if (err) {
       res.status(500).send();
     } else {
